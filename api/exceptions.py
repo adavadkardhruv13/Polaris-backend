@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 class PitchAnalyzerException(Exception):
     """Base exception for pitch analyzer"""
     pass
@@ -16,4 +17,24 @@ class AnalysisError(PitchAnalyzerException):
 
 class RateLimitError(PitchAnalyzerException):
     """Raised when rate limit is exceeded"""
+=======
+class PitchAnalyzerException(Exception):
+    """Base exception for pitch analyzer"""
+    pass
+
+class ValidationError(PitchAnalyzerException):
+    """Raised when input validation fails"""
+    pass
+
+class PDFProcessingError(PitchAnalyzerException):
+    """Raised when PDF processing fails"""
+    pass
+
+class AnalysisError(PitchAnalyzerException):
+    """Raised when AI analysis fails"""
+    pass
+
+class RateLimitError(PitchAnalyzerException):
+    """Raised when rate limit is exceeded"""
+>>>>>>> c72182e161d21bf2b9034ca62c709ac59f608736
     pass

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 2025-07-29 13:46:42,714 - pitch_analyzer - INFO - add_metrics_and_logging:54 - Incoming request: GET /
 2025-07-29 13:46:42,716 - pitch_analyzer - INFO - add_metrics_and_logging:68 - Request completed: GET / - 200 - 0.002s
 2025-07-29 13:46:52,776 - pitch_analyzer - INFO - add_metrics_and_logging:54 - Incoming request: GET /docs
@@ -13,3 +14,20 @@
 2025-07-29 13:47:17,022 - pitch_analyzer - INFO - analyze_pitch:86 - Starting pitch analysis 534b4d69-a510-4f21-a055-cfd977cc817f
 2025-07-29 13:48:06,644 - pitch_analyzer - INFO - analyze_pitch:104 - Analysis 534b4d69-a510-4f21-a055-cfd977cc817f completed in 49.62s
 2025-07-29 13:48:06,649 - pitch_analyzer - INFO - add_metrics_and_logging:68 - Request completed: POST /analyze_pdf - 200 - 49.837s
+=======
+2025-07-29 13:46:42,714 - pitch_analyzer - INFO - add_metrics_and_logging:54 - Incoming request: GET /
+2025-07-29 13:46:42,716 - pitch_analyzer - INFO - add_metrics_and_logging:68 - Request completed: GET / - 200 - 0.002s
+2025-07-29 13:46:52,776 - pitch_analyzer - INFO - add_metrics_and_logging:54 - Incoming request: GET /docs
+2025-07-29 13:46:52,776 - pitch_analyzer - INFO - add_metrics_and_logging:68 - Request completed: GET /docs - 200 - 0.001s
+2025-07-29 13:46:53,155 - pitch_analyzer - INFO - add_metrics_and_logging:54 - Incoming request: GET /openapi.json
+2025-07-29 13:46:53,171 - pitch_analyzer - INFO - add_metrics_and_logging:68 - Request completed: GET /openapi.json - 200 - 0.016s
+2025-07-29 13:47:16,811 - pitch_analyzer - INFO - add_metrics_and_logging:54 - Incoming request: POST /analyze_pdf
+2025-07-29 13:47:16,870 - pitch_analyzer - WARNING - validate_file:47 - Could not determine file type for Pitch-Example-Air-BnB-PDF.pdf: 'Settings' object has no attribute 'allowed_file_types'
+2025-07-29 13:47:16,870 - pitch_analyzer - INFO - analyze_pitch_pdf:203 - Starting PDF pitch analysis - File: Pitch-Example-Air-BnB-PDF.pdf, Size: 862121 bytes
+2025-07-29 13:47:16,870 - pitch_analyzer - INFO - extract_text_from_pdf:14 - Starting PDF text extraction for file: Pitch-Example-Air-BnB-PDF.pdf
+2025-07-29 13:47:16,995 - pitch_analyzer - INFO - extract_text_from_pdf:37 - Successfully extracted 2624 characters using PyPDF2
+2025-07-29 13:47:16,995 - pitch_analyzer - INFO - analyze_pitch_pdf:211 - PDF text extraction completed in 0.12s - Extracted 2624 characters
+2025-07-29 13:47:17,022 - pitch_analyzer - INFO - analyze_pitch:86 - Starting pitch analysis 534b4d69-a510-4f21-a055-cfd977cc817f
+2025-07-29 13:48:06,644 - pitch_analyzer - INFO - analyze_pitch:104 - Analysis 534b4d69-a510-4f21-a055-cfd977cc817f completed in 49.62s
+2025-07-29 13:48:06,649 - pitch_analyzer - INFO - add_metrics_and_logging:68 - Request completed: POST /analyze_pdf - 200 - 49.837s
+>>>>>>> c72182e161d21bf2b9034ca62c709ac59f608736
