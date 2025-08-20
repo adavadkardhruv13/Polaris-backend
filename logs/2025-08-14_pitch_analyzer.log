@@ -1,0 +1,334 @@
+2025-08-14 11:49:17,279 - pitch_analyzer - INFO - add_metrics_and_logging:54 - Incoming request: GET /
+2025-08-14 11:49:17,281 - pitch_analyzer - INFO - add_metrics_and_logging:68 - Request completed: GET / - 200 - 0.002s
+2025-08-14 11:49:17,931 - pitch_analyzer - INFO - add_metrics_and_logging:54 - Incoming request: GET /favicon.ico
+2025-08-14 11:49:17,933 - pitch_analyzer - INFO - add_metrics_and_logging:68 - Request completed: GET /favicon.ico - 404 - 0.002s
+2025-08-14 11:49:21,958 - pitch_analyzer - INFO - add_metrics_and_logging:54 - Incoming request: GET /docs
+2025-08-14 11:49:21,959 - pitch_analyzer - INFO - add_metrics_and_logging:68 - Request completed: GET /docs - 200 - 0.002s
+2025-08-14 11:49:22,106 - pitch_analyzer - INFO - add_metrics_and_logging:54 - Incoming request: GET /openapi.json
+2025-08-14 11:49:22,138 - pitch_analyzer - INFO - add_metrics_and_logging:68 - Request completed: GET /openapi.json - 200 - 0.032s
+2025-08-14 11:49:39,647 - pitch_analyzer - INFO - add_metrics_and_logging:54 - Incoming request: POST /analyze_pdf
+2025-08-14 11:49:40,907 - pitch_analyzer - WARNING - validate_file:47 - Could not determine file type for about shoppin’.pdf: 'Settings' object has no attribute 'allowed_file_types'
+2025-08-14 11:49:40,908 - pitch_analyzer - INFO - analyze_pitch_pdf:203 - Starting PDF pitch analysis - File: about shoppin’.pdf, Size: 9974118 bytes
+2025-08-14 11:49:40,908 - pitch_analyzer - INFO - extract_text_from_pdf:14 - Starting PDF text extraction for file: about shoppin’.pdf
+2025-08-14 11:49:42,239 - pitch_analyzer - INFO - extract_text_from_pdf:37 - Successfully extracted 8511 characters using PyPDF2
+2025-08-14 11:49:42,241 - pitch_analyzer - INFO - analyze_pitch_pdf:211 - PDF text extraction completed in 1.33s - Extracted 8511 characters
+2025-08-14 11:49:42,293 - pitch_analyzer - INFO - analyze_pitch:86 - Starting pitch analysis 94eacdca-f523-4ad0-a505-22fd3f07befc
+2025-08-14 11:49:55,790 - pitch_analyzer - ERROR - analyze_pitch:110 - Analysis 94eacdca-f523-4ad0-a505-22fd3f07befc failed after 13.5s: Connection error.
+2025-08-14 11:49:55,793 - pitch_analyzer - ERROR - analysis_exception_handler:107 - Analysis error: AI analysis failed: Connection error.
+2025-08-14 11:49:56,219 - pitch_analyzer - ERROR - add_metrics_and_logging:74 - Request failed: POST /analyze_pdf - Object of type datetime is not JSON serializable - 16.572s
+2025-08-14 11:49:57,488 - pitch_analyzer - ERROR - general_exception_handler:118 - Unexpected error: Object of type datetime is not JSON serializable
+  + Exception Group Traceback (most recent call last):
+  |   File "E:\pitch_analyser\venv\Lib\site-packages\starlette\_utils.py", line 77, in collapse_excgroups
+  |     yield
+  |   File "E:\pitch_analyser\venv\Lib\site-packages\starlette\middleware\base.py", line 183, in __call__
+  |     async with anyio.create_task_group() as task_group:
+  |                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "E:\pitch_analyser\venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 772, in __aexit__
+  |     raise BaseExceptionGroup(
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "E:\pitch_analyser\venv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    |     await self.app(scope, receive, _send)
+    |   File "E:\pitch_analyser\venv\Lib\site-packages\starlette\middleware\base.py", line 182, in __call__
+    |     with recv_stream, send_stream, collapse_excgroups():
+    |                                    ^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Python312\Lib\contextlib.py", line 158, in __exit__
+    |     self.gen.throw(value)
+    |   File "E:\pitch_analyser\venv\Lib\site-packages\starlette\_utils.py", line 83, in collapse_excgroups
+    |     raise exc
+    |   File "E:\pitch_analyser\venv\Lib\site-packages\starlette\middleware\base.py", line 184, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "E:\pitch_analyser\api\main.py", line 57, in add_metrics_and_logging
+    |     response = await call_next(request)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "E:\pitch_analyser\venv\Lib\site-packages\starlette\middleware\base.py", line 159, in call_next
+    |     raise app_exc
+    |   File "E:\pitch_analyser\venv\Lib\site-packages\starlette\middleware\base.py", line 144, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "E:\pitch_analyser\venv\Lib\site-packages\starlette\middleware\cors.py", line 93, in __call__
+    |     await self.simple_response(scope, receive, send, request_headers=headers)
+    |   File "E:\pitch_analyser\venv\Lib\site-packages\starlette\middleware\cors.py", line 144, in simple_response
+    |     await self.app(scope, receive, send)
+    |   File "E:\pitch_analyser\venv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+    |   File "E:\pitch_analyser\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "E:\pitch_analyser\venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "E:\pitch_analyser\venv\Lib\site-packages\starlette\routing.py", line 716, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "E:\pitch_analyser\venv\Lib\site-packages\starlette\routing.py", line 736, in app
+    |     await route.handle(scope, receive, send)
+    |   File "E:\pitch_analyser\venv\Lib\site-packages\starlette\routing.py", line 290, in handle
+    |     await self.app(scope, receive, send)
+    |   File "E:\pitch_analyser\venv\Lib\site-packages\starlette\routing.py", line 78, in app
+    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+    |   File "E:\pitch_analyser\venv\Lib\site-packages\starlette\_exception_handler.py", line 59, in wrapped_app
+    |     response = await handler(conn, exc)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "E:\pitch_analyser\api\main.py", line 108, in analysis_exception_handler
+    |     return JSONResponse(
+    |            ^^^^^^^^^^^^^
+    |   File "E:\pitch_analyser\venv\Lib\site-packages\starlette\responses.py", line 190, in __init__
+    |     super().__init__(content, status_code, headers, media_type, background)
+    |   File "E:\pitch_analyser\venv\Lib\site-packages\starlette\responses.py", line 47, in __init__
+    |     self.body = self.render(content)
+    |                 ^^^^^^^^^^^^^^^^^^^^
+    |   File "E:\pitch_analyser\venv\Lib\site-packages\starlette\responses.py", line 193, in render
+    |     return json.dumps(
+    |            ^^^^^^^^^^^
+    |   File "C:\Python312\Lib\json\__init__.py", line 238, in dumps
+    |     **kw).encode(obj)
+    |           ^^^^^^^^^^^
+    |   File "C:\Python312\Lib\json\encoder.py", line 200, in encode
+    |     chunks = self.iterencode(o, _one_shot=True)
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Python312\Lib\json\encoder.py", line 258, in iterencode
+    |     return _iterencode(o, 0)
+    |            ^^^^^^^^^^^^^^^^^
+    |   File "C:\Python312\Lib\json\encoder.py", line 180, in default
+    |     raise TypeError(f'Object of type {o.__class__.__name__} '
+    | TypeError: Object of type datetime is not JSON serializable
+    +------------------------------------
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\pitch_analyser\venv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "E:\pitch_analyser\venv\Lib\site-packages\starlette\middleware\base.py", line 182, in __call__
+    with recv_stream, send_stream, collapse_excgroups():
+                                   ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python312\Lib\contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "E:\pitch_analyser\venv\Lib\site-packages\starlette\_utils.py", line 83, in collapse_excgroups
+    raise exc
+  File "E:\pitch_analyser\venv\Lib\site-packages\starlette\middleware\base.py", line 184, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\pitch_analyser\api\main.py", line 57, in add_metrics_and_logging
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\pitch_analyser\venv\Lib\site-packages\starlette\middleware\base.py", line 159, in call_next
+    raise app_exc
+  File "E:\pitch_analyser\venv\Lib\site-packages\starlette\middleware\base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "E:\pitch_analyser\venv\Lib\site-packages\starlette\middleware\cors.py", line 93, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "E:\pitch_analyser\venv\Lib\site-packages\starlette\middleware\cors.py", line 144, in simple_response
+    await self.app(scope, receive, send)
+  File "E:\pitch_analyser\venv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "E:\pitch_analyser\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "E:\pitch_analyser\venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "E:\pitch_analyser\venv\Lib\site-packages\starlette\routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "E:\pitch_analyser\venv\Lib\site-packages\starlette\routing.py", line 736, in app
+    await route.handle(scope, receive, send)
+  File "E:\pitch_analyser\venv\Lib\site-packages\starlette\routing.py", line 290, in handle
+    await self.app(scope, receive, send)
+  File "E:\pitch_analyser\venv\Lib\site-packages\starlette\routing.py", line 78, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "E:\pitch_analyser\venv\Lib\site-packages\starlette\_exception_handler.py", line 59, in wrapped_app
+    response = await handler(conn, exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\pitch_analyser\api\main.py", line 108, in analysis_exception_handler
+    return JSONResponse(
+           ^^^^^^^^^^^^^
+  File "E:\pitch_analyser\venv\Lib\site-packages\starlette\responses.py", line 190, in __init__
+    super().__init__(content, status_code, headers, media_type, background)
+  File "E:\pitch_analyser\venv\Lib\site-packages\starlette\responses.py", line 47, in __init__
+    self.body = self.render(content)
+                ^^^^^^^^^^^^^^^^^^^^
+  File "E:\pitch_analyser\venv\Lib\site-packages\starlette\responses.py", line 193, in render
+    return json.dumps(
+           ^^^^^^^^^^^
+  File "C:\Python312\Lib\json\__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "C:\Python312\Lib\json\encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python312\Lib\json\encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Python312\Lib\json\encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type datetime is not JSON serializable
+
+2025-08-14 11:51:00,790 - pitch_analyzer - INFO - add_metrics_and_logging:54 - Incoming request: POST /analyze_pdf
+2025-08-14 11:51:00,913 - pitch_analyzer - WARNING - validate_file:47 - Could not determine file type for about shoppin’.pdf: 'Settings' object has no attribute 'allowed_file_types'
+2025-08-14 11:51:00,914 - pitch_analyzer - INFO - analyze_pitch_pdf:203 - Starting PDF pitch analysis - File: about shoppin’.pdf, Size: 9974118 bytes
+2025-08-14 11:51:00,915 - pitch_analyzer - INFO - extract_text_from_pdf:14 - Starting PDF text extraction for file: about shoppin’.pdf
+2025-08-14 11:51:01,354 - pitch_analyzer - INFO - extract_text_from_pdf:37 - Successfully extracted 8511 characters using PyPDF2
+2025-08-14 11:51:01,354 - pitch_analyzer - INFO - analyze_pitch_pdf:211 - PDF text extraction completed in 0.44s - Extracted 8511 characters
+2025-08-14 11:51:01,371 - pitch_analyzer - INFO - analyze_pitch:86 - Starting pitch analysis 610ac91d-843c-495d-8c1e-1755179e711a
+2025-08-14 11:51:02,774 - pitch_analyzer - ERROR - analyze_pitch:110 - Analysis 610ac91d-843c-495d-8c1e-1755179e711a failed after 1.4s: Connection error.
+2025-08-14 11:51:02,781 - pitch_analyzer - ERROR - analysis_exception_handler:107 - Analysis error: AI analysis failed: Connection error.
+2025-08-14 11:51:02,782 - pitch_analyzer - ERROR - add_metrics_and_logging:74 - Request failed: POST /analyze_pdf - Object of type datetime is not JSON serializable - 1.992s
+2025-08-14 11:51:02,805 - pitch_analyzer - ERROR - general_exception_handler:118 - Unexpected error: Object of type datetime is not JSON serializable
+  + Exception Group Traceback (most recent call last):
+  |   File "E:\pitch_analyser\venv\Lib\site-packages\starlette\_utils.py", line 77, in collapse_excgroups
+  |     yield
+  |   File "E:\pitch_analyser\venv\Lib\site-packages\starlette\middleware\base.py", line 183, in __call__
+  |     async with anyio.create_task_group() as task_group:
+  |                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "E:\pitch_analyser\venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 772, in __aexit__
+  |     raise BaseExceptionGroup(
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "E:\pitch_analyser\venv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    |     await self.app(scope, receive, _send)
+    |   File "E:\pitch_analyser\venv\Lib\site-packages\starlette\middleware\base.py", line 182, in __call__
+    |     with recv_stream, send_stream, collapse_excgroups():
+    |                                    ^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Python312\Lib\contextlib.py", line 158, in __exit__
+    |     self.gen.throw(value)
+    |   File "E:\pitch_analyser\venv\Lib\site-packages\starlette\_utils.py", line 83, in collapse_excgroups
+    |     raise exc
+    |   File "E:\pitch_analyser\venv\Lib\site-packages\starlette\middleware\base.py", line 184, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "E:\pitch_analyser\api\main.py", line 57, in add_metrics_and_logging
+    |     response = await call_next(request)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "E:\pitch_analyser\venv\Lib\site-packages\starlette\middleware\base.py", line 159, in call_next
+    |     raise app_exc
+    |   File "E:\pitch_analyser\venv\Lib\site-packages\starlette\middleware\base.py", line 144, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "E:\pitch_analyser\venv\Lib\site-packages\starlette\middleware\cors.py", line 93, in __call__
+    |     await self.simple_response(scope, receive, send, request_headers=headers)
+    |   File "E:\pitch_analyser\venv\Lib\site-packages\starlette\middleware\cors.py", line 144, in simple_response
+    |     await self.app(scope, receive, send)
+    |   File "E:\pitch_analyser\venv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+    |   File "E:\pitch_analyser\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "E:\pitch_analyser\venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "E:\pitch_analyser\venv\Lib\site-packages\starlette\routing.py", line 716, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "E:\pitch_analyser\venv\Lib\site-packages\starlette\routing.py", line 736, in app
+    |     await route.handle(scope, receive, send)
+    |   File "E:\pitch_analyser\venv\Lib\site-packages\starlette\routing.py", line 290, in handle
+    |     await self.app(scope, receive, send)
+    |   File "E:\pitch_analyser\venv\Lib\site-packages\starlette\routing.py", line 78, in app
+    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+    |   File "E:\pitch_analyser\venv\Lib\site-packages\starlette\_exception_handler.py", line 59, in wrapped_app
+    |     response = await handler(conn, exc)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "E:\pitch_analyser\api\main.py", line 108, in analysis_exception_handler
+    |     return JSONResponse(
+    |            ^^^^^^^^^^^^^
+    |   File "E:\pitch_analyser\venv\Lib\site-packages\starlette\responses.py", line 190, in __init__
+    |     super().__init__(content, status_code, headers, media_type, background)
+    |   File "E:\pitch_analyser\venv\Lib\site-packages\starlette\responses.py", line 47, in __init__
+    |     self.body = self.render(content)
+    |                 ^^^^^^^^^^^^^^^^^^^^
+    |   File "E:\pitch_analyser\venv\Lib\site-packages\starlette\responses.py", line 193, in render
+    |     return json.dumps(
+    |            ^^^^^^^^^^^
+    |   File "C:\Python312\Lib\json\__init__.py", line 238, in dumps
+    |     **kw).encode(obj)
+    |           ^^^^^^^^^^^
+    |   File "C:\Python312\Lib\json\encoder.py", line 200, in encode
+    |     chunks = self.iterencode(o, _one_shot=True)
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Python312\Lib\json\encoder.py", line 258, in iterencode
+    |     return _iterencode(o, 0)
+    |            ^^^^^^^^^^^^^^^^^
+    |   File "C:\Python312\Lib\json\encoder.py", line 180, in default
+    |     raise TypeError(f'Object of type {o.__class__.__name__} '
+    | TypeError: Object of type datetime is not JSON serializable
+    +------------------------------------
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\pitch_analyser\venv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "E:\pitch_analyser\venv\Lib\site-packages\starlette\middleware\base.py", line 182, in __call__
+    with recv_stream, send_stream, collapse_excgroups():
+                                   ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python312\Lib\contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "E:\pitch_analyser\venv\Lib\site-packages\starlette\_utils.py", line 83, in collapse_excgroups
+    raise exc
+  File "E:\pitch_analyser\venv\Lib\site-packages\starlette\middleware\base.py", line 184, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\pitch_analyser\api\main.py", line 57, in add_metrics_and_logging
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\pitch_analyser\venv\Lib\site-packages\starlette\middleware\base.py", line 159, in call_next
+    raise app_exc
+  File "E:\pitch_analyser\venv\Lib\site-packages\starlette\middleware\base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "E:\pitch_analyser\venv\Lib\site-packages\starlette\middleware\cors.py", line 93, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "E:\pitch_analyser\venv\Lib\site-packages\starlette\middleware\cors.py", line 144, in simple_response
+    await self.app(scope, receive, send)
+  File "E:\pitch_analyser\venv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "E:\pitch_analyser\venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "E:\pitch_analyser\venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "E:\pitch_analyser\venv\Lib\site-packages\starlette\routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "E:\pitch_analyser\venv\Lib\site-packages\starlette\routing.py", line 736, in app
+    await route.handle(scope, receive, send)
+  File "E:\pitch_analyser\venv\Lib\site-packages\starlette\routing.py", line 290, in handle
+    await self.app(scope, receive, send)
+  File "E:\pitch_analyser\venv\Lib\site-packages\starlette\routing.py", line 78, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "E:\pitch_analyser\venv\Lib\site-packages\starlette\_exception_handler.py", line 59, in wrapped_app
+    response = await handler(conn, exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\pitch_analyser\api\main.py", line 108, in analysis_exception_handler
+    return JSONResponse(
+           ^^^^^^^^^^^^^
+  File "E:\pitch_analyser\venv\Lib\site-packages\starlette\responses.py", line 190, in __init__
+    super().__init__(content, status_code, headers, media_type, background)
+  File "E:\pitch_analyser\venv\Lib\site-packages\starlette\responses.py", line 47, in __init__
+    self.body = self.render(content)
+                ^^^^^^^^^^^^^^^^^^^^
+  File "E:\pitch_analyser\venv\Lib\site-packages\starlette\responses.py", line 193, in render
+    return json.dumps(
+           ^^^^^^^^^^^
+  File "C:\Python312\Lib\json\__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "C:\Python312\Lib\json\encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python312\Lib\json\encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Python312\Lib\json\encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type datetime is not JSON serializable
+
+2025-08-14 11:53:05,437 - pitch_analyzer - INFO - add_metrics_and_logging:54 - Incoming request: POST /analyze_pdf
+2025-08-14 11:53:05,536 - pitch_analyzer - WARNING - validate_file:47 - Could not determine file type for about shoppin’.pdf: 'Settings' object has no attribute 'allowed_file_types'
+2025-08-14 11:53:05,536 - pitch_analyzer - INFO - analyze_pitch_pdf:203 - Starting PDF pitch analysis - File: about shoppin’.pdf, Size: 9974118 bytes
+2025-08-14 11:53:05,536 - pitch_analyzer - INFO - extract_text_from_pdf:14 - Starting PDF text extraction for file: about shoppin’.pdf
+2025-08-14 11:53:06,021 - pitch_analyzer - INFO - extract_text_from_pdf:37 - Successfully extracted 8511 characters using PyPDF2
+2025-08-14 11:53:06,023 - pitch_analyzer - INFO - analyze_pitch_pdf:211 - PDF text extraction completed in 0.49s - Extracted 8511 characters
+2025-08-14 11:53:06,040 - pitch_analyzer - INFO - analyze_pitch:86 - Starting pitch analysis b8d32e6c-1b6d-4247-a309-1e9c674ca46d
+2025-08-14 11:53:47,770 - pitch_analyzer - INFO - analyze_pitch:104 - Analysis b8d32e6c-1b6d-4247-a309-1e9c674ca46d completed in 41.73s
+2025-08-14 11:53:47,785 - pitch_analyzer - INFO - add_metrics_and_logging:68 - Request completed: POST /analyze_pdf - 200 - 42.348s
+2025-08-14 12:35:14,157 - pitch_analyzer - INFO - add_metrics_and_logging:54 - Incoming request: POST /analyze_pdf
+2025-08-14 12:35:14,197 - pitch_analyzer - WARNING - validate_file:47 - Could not determine file type for Pitch-Example-Air-BnB-PDF.pdf: 'Settings' object has no attribute 'allowed_file_types'
+2025-08-14 12:35:14,197 - pitch_analyzer - INFO - analyze_pitch_pdf:203 - Starting PDF pitch analysis - File: Pitch-Example-Air-BnB-PDF.pdf, Size: 862121 bytes
+2025-08-14 12:35:14,197 - pitch_analyzer - INFO - extract_text_from_pdf:14 - Starting PDF text extraction for file: Pitch-Example-Air-BnB-PDF.pdf
+2025-08-14 12:35:14,401 - pitch_analyzer - INFO - extract_text_from_pdf:37 - Successfully extracted 2624 characters using PyPDF2
+2025-08-14 12:35:14,403 - pitch_analyzer - INFO - analyze_pitch_pdf:211 - PDF text extraction completed in 0.20s - Extracted 2624 characters
+2025-08-14 12:35:14,405 - pitch_analyzer - INFO - analyze_pitch:86 - Starting pitch analysis 9fe8f5f9-3091-4c64-9743-d0ed1fc9c364
+2025-08-14 12:35:50,521 - pitch_analyzer - INFO - analyze_pitch:104 - Analysis 9fe8f5f9-3091-4c64-9743-d0ed1fc9c364 completed in 36.12s
+2025-08-14 12:35:50,521 - pitch_analyzer - INFO - add_metrics_and_logging:68 - Request completed: POST /analyze_pdf - 200 - 36.366s
