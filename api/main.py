@@ -1,4 +1,5 @@
-from fastapi import FastAPI, HTTPException, UploadFile, File, Request, Depends
+from fastapi import FastAPI, HTTPException, UploadFile, File, Request, Depends, Query
+from typing import List, Optional
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from slowapi import Limiter, _rate_limit_exceeded_handler
@@ -13,13 +14,15 @@ from .logger import logger
 from .exceptions import PDFProcessingError, PitchAnalyzerException, ValidationError, RateLimitError, AnalysisError
 from .pitch_analyzer import pitch_analyzer, PitchAnalyzer, PitchFeedback
 from .pdf_util import PDFProcessingError, PDFProcessor
-from .schema import PitchFeedback, PitchRequest, AnalysisResponse, ErrorResponse
+from .schema import PitchFeedback, PitchRequest, AnalysisResponse, ErrorResponse, InvestorListResponse, InvestorResponse, InvestorInDB, InvestorFilters, InvestorBase
 from .validators import InputValidator
+from .investor_service import investor_service
+from .database import connect_to_mongo, close_mongo_connection
 
 # Initialize FastAPI app
 app = FastAPI(
-    title="AI Pitch Deck Analyzer",
-    description="Robust AI-powered pitch deck analysis and feedback system",
+    title="Polaris",
+    description="Robust AI-powered pitch deck analysis and Investor info service",
     version="2.0.0",
     docs_url="/docs",
     redoc_url="/redoc"
@@ -78,6 +81,14 @@ async def add_metrics_and_logging(request: Request, call_next):
             status=500
         ).inc()
         raise
+    
+@app.on_event("startup")
+async def startup_db_client():
+    await connect_to_mongo()
+
+@app.on_event("shutdown")
+async def shutdown_db_client():
+    await close_mongo_connection()
 
 # Exception handlers
 @app.exception_handler(ValidationError)
@@ -234,6 +245,59 @@ async def analyze_pitch_pdf(request: Request, file: UploadFile = File(...)):
         ANALYSIS_COUNT.labels(type="pdf", status="error").inc()
         logger.error(f"Unexpected error in PDF analysis: {str(e)}")
         raise HTTPException(status_code=500, detail="Analysis service temporarily unavailable")
+    
+    
+@app.get("/investors", response_model=InvestorListResponse)
+async def get_investors(
+    page: int = Query(1, ge=1, description="Page number"),
+    page_size: int = Query(20, ge=1, le=100, description="Number of items per page"),
+    search: Optional[str] = Query(None, description="Search in name, description, sectors"),
+    type: Optional[str] = Query(None, description="Filter by investor type"),
+    location: Optional[str] = Query(None, description="Filter by location"),
+    investment_stage: Optional[str] = Query(None, description="Filter by investment stage"),
+    sort_by: str = Query("Investor_name", description="Sort field"),  # Updated default
+    sort_order: str = Query("asc", regex="^(asc|desc)$", description="Sort order")
+):
+    """Get investors with pagination and filters"""
+    try:
+        filters = InvestorFilters(
+            search=search,
+            type=type,
+            location=location,
+            investment_stage=investment_stage,
+        )
+        
+        sort_order_int = 1 if sort_order == "asc" else -1
+        
+        result = await investor_service.get_investors(
+            page=page,
+            page_size=page_size,
+            filters=filters,
+            sort_by=sort_by,
+            sort_order=sort_order_int
+        )
+        
+        return result
+        
+    except Exception as e:
+        logger.error(f"Error fetching investors: {e}")
+        raise HTTPException(status_code=500, detail="Error fetching investors")
+
+@app.get("/investors/{investor_id}", response_model=InvestorResponse)
+async def get_investor(investor_id: str):
+    """Get investor by ID"""
+    try:
+        investor = await investor_service.get_investor_by_id(investor_id)
+        if not investor:
+            raise HTTPException(status_code=404, detail="Investor not found")
+        
+        return investor
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error fetching investor {investor_id}: {e}")
+        raise HTTPException(status_code=500, detail="Error fetching investor")
 
 # Additional utility endpoints
 @app.get("/")

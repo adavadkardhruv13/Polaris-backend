@@ -1,7 +1,9 @@
 from pydantic_settings import BaseSettings
 from typing import List
 import os
+from dotenv import load_dotenv
 
+load_dotenv()
 
 class Settings(BaseSettings):
     OPENAI_API_KEY: str
@@ -11,6 +13,10 @@ class Settings(BaseSettings):
     min_pitch_length: int = 90
     max_file_size: int = 10 * 1024 * 1024 #10MB
     
+    # MongoDB Configuration
+    mongodb_url: str = "MONGODB_URL"
+    database_name: str = "Polaris-Investor"
+    
     allowed_file_type: List[str] = ["application/pdf"]
     cors_origins: List[str] = ["http://localhost:3000", "http://localhost:3001"]
     
@@ -18,6 +24,10 @@ class Settings(BaseSettings):
     
     log_level: str = "INFO"
     log_file: str = "pitch_analyzer.log"
+    
+    # Pagination defaults
+    default_page_size: int = 20
+    max_page_size: int = 100
     
     class Config:
         env_file = ".env"
